@@ -16,15 +16,15 @@ const Router = (routes = {}) => ({
         }
 
         routes[method][urlOrHandler] = Array.isArray(handler) ? handler : [handler];
-
+        return Router(routes)
     },
 
     serve: (req, res) => {
-        const { method } = req;
+        const { method, url } = req;
 
         const matchingUrl = Object.keys(routes[method]).find((key) => new RegExp(key).test(url))
    
-   routes[method][matchingUrl].forEach((f) => f(req, res));
+        routes[method][matchingUrl].forEach((f) => f(req, res));
 
     }
 });

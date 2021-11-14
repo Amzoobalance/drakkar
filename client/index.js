@@ -2,7 +2,7 @@ const {createReadStream } = require("fs");
 const {createGzip} = require ("zlib"); 
 const { request } = require ("http"); 
 
-const [INPUT_PATH, OUTPUT_PATH, LOGIN, PASS] = process.argv.slice(2);
+const [INPUT_PATH, OUTPUT_PATH, HOST, LOGIN, PASS] = process.argv.slice(2);
 
 
 const unifiedCredentials = `${LOGIN}:${PASS}`

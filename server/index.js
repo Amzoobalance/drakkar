@@ -9,7 +9,7 @@ const { checkAuthorizationHeader } = require("./src/middleware/check-authorizati
 const { checkFilePathHeader } = require("./src/middleware/check-file-path-header")
 const { setHeader } = require("./src/middleware/set-header") 
 const { validateAuthorizationToken } = require("./src/middleware/validate-authorization-token")
-const { ignorOnError } = require("./src/utils/ignore-on-error")
+const { ignoreOnError } = require("./src/utils/ignore-on-error")
 const { endResponse } = require("./src/middleware/end-response")
 
 
@@ -20,23 +20,23 @@ const { DRAKKAR_PORT } = process.env;
 const authValidations = [
     setHeader('www-authenticate', 'Basic'),
     checkAuthorizationHeader,
-    ignorOnError(validateAuthorizationToken),
+    ignoreOnError(validateAuthorizationToken),
         
 ]
 
 const router = Router ()
 .post('/upload', [
         ...authValidations,
-        ignorOnError(checkFilePathHeader),
+        ignoreOnError(checkFilePathHeader),
         endResponse,
-        ignorOnError(uploadFileHandler)])
+        ignoreOnError(uploadFileHandler)])
 .post(defaultRequestHandler)
 .get([
     ...authValidations,
     endResponse,
-    ignorOnError(setHeader('content-type', 'text/html')),
-    ignorOnError(setHeader('content-encoding', 'gzip')),
-    ignorOnError(getFileHandler)])
+    ignoreOnError(setHeader('content-type', 'text/html')),
+    ignoreOnError(setHeader('content-encoding', 'gzip')),
+    ignoreOnError(getFileHandler)])
 .put(defaultRequestHandler)
 .patch(defaultRequestHandler)
 .delete(defaultRequestHandler)
