@@ -12,10 +12,7 @@ const { validateAuthorizationToken } = require("./src/middleware/validate-author
 const { ignoreOnError } = require("./src/utils/ignore-on-error")
 const { endResponse } = require("./src/middleware/end-response")
 
-
 const { DRAKKAR_PORT } = process.env;
-
-
 
 const authValidations = [
     setHeader('www-authenticate', 'Basic'),
@@ -32,8 +29,8 @@ const router = Router ()
         ignoreOnError(uploadFileHandler)])
 .post(defaultRequestHandler)
 .get([
-    ...authValidations,
-    endResponse,
+    // ...authValidations,
+    // endResponse,
     ignoreOnError(setHeader('content-type', 'text/html')),
     ignoreOnError(setHeader('content-encoding', 'gzip')),
     ignoreOnError(getFileHandler)])

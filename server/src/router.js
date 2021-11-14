@@ -16,6 +16,7 @@ const Router = (routes = {}) => ({
         }
 
         routes[method][urlOrHandler] = Array.isArray(handler) ? handler : [handler];
+        
         return Router(routes)
     },
 
