@@ -1,9 +1,9 @@
 const endResponse = (req, res) => {
-    if (req.hasError) {
-        res.end();
-    }
-}
+  if (req.hasError) {
+    res.end();
+  }
+};
 
 module.exports = {
-    endResponse,
+  endResponse,
 };
